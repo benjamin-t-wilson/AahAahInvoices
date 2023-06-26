@@ -24,6 +24,10 @@ const EditOrder = ({
   const [readyForSubmission, setReadyForSubmission] = useState(false);
 
   useEffect(() => {
+    setNewOrderDetails(route.params.order);
+  }, [route.params.order]);
+
+  useEffect(() => {
     if (readyForSubmission) {
       fetch("https://aah-aah-invoices.onrender.com/order/", {
         method: "PATCH",
@@ -58,8 +62,6 @@ const EditOrder = ({
             setItems(res);
           });
       }
-
-      setNewOrderDetails(route.params.order);
 
       //   return () => {
       //     alert("Screen was unfocused");
